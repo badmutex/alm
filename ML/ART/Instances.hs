@@ -45,24 +45,24 @@ instance INummable (Vigilance p) where
 
 
 instance ( Applicative f
-         , Num n
-         , Eq (f n)
-         , INummable (f n)
-         , Show (f n))
+         , Num         n
+         , Eq          (f n)
+         , INummable   (f n)
+         , Show        (f n))
     => Num (f n) where
-        (+) = liftA2 (+)
-        (-) = liftA2 (-)
-        (*) = liftA2 (*)
-        abs = liftA abs
-        signum = liftA signum
+        (+)         = liftA2 (+)
+        (-)         = liftA2 (-)
+        (*)         = liftA2 (*)
+        abs         = liftA abs
+        signum      = liftA signum
         fromInteger = liftA fromInteger . pure
 
 instance ( Applicative f
-         , Fractional n
-         , Eq (f n)
-         , INummable (f n)
-         , Show (f n))
+         , Fractional  n
+         , Eq          (f n)
+         , INummable   (f n)
+         , Show        (f n))
     => Fractional (f n) where
-        (/) = liftA2 (/)
-        recip = liftA recip
+        (/)          = liftA2 (/)
+        recip        = liftA recip
         fromRational = liftA fromRational . pure
