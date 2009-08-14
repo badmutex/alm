@@ -1,0 +1,15 @@
+Name:			alm
+Version:		0.1
+Stability:		alpha
+Synopsis:		Machine learning library
+Category:		Algorithms, AI, Clustering
+License:		BSD3
+Author:			Badi' Abdul-Wahid
+Maintainer:		abdulwahidc@gmail.com
+Build-Type:		Simple
+Data-dir:       src
+Cabal-Version:	>= 1.2
+
+Library
+    exposed-modules: ML.Types ML.Internal.Types ML.ART.ART ML.ART.Types ML.ART.Instances
+    build-depends:   base, containers
