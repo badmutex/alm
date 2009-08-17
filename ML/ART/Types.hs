@@ -1,4 +1,20 @@
-module ML.ART.Types where
+module ML.ART.Types ( Choice (..)
+                    , LearningRate (..)
+                    , Vigilance (..)
+                    , INummable
+
+                    , ARTable (..)
+
+                    , Categories
+                    , getCategory
+                    , Position
+                    , Positional
+                    , Output (..)
+                    , fromOutput
+
+                    , ART (..)
+
+                    ) where
 
 import ML.Types
 
@@ -28,10 +44,16 @@ class ARTable m where
 
 
 type Categories a = Map Int a
+getCategory :: Position -> Categories a -> a
+getCategory k cs = cs ! k
+
+type Position = Int
 type Positional a = (Int, a)
 data Output a = NewCategory (Positional a) | LearnCategory (Positional a)
-fromOutput (NewCategory   (_, v)) = v
-fromOutput (LearnCategory (_, v)) = v
+fromOutput :: Output a -> Positional a
+fromOutput (NewCategory   p) = p
+fromOutput (LearnCategory p) = p
+
 
 data ART a = ART {
       categories :: Categories a

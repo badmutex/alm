@@ -15,6 +15,7 @@ Library
                      ML.ART.ART
                      ML.ART.Instances
                      ML.ART.Types
+                     ML.ARTMap.ARTMap
                      ML.ARTMap.Types
                      ML.Internal.Types
                      ML.Types

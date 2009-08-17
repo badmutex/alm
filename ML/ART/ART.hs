@@ -1,4 +1,7 @@
-module ML.ART.ART (runART) where
+module ML.ART.ART ( train
+                  , predict
+                  , module ML.ART.Types
+                  ) where
 
 import ML.ART.Types
 import ML.ART.Instances
@@ -7,7 +10,7 @@ import Data.Map (assocs, insert, keys)
 import Data.List (sortBy)
 
 
-newIndex :: Categories a -> Int
+newIndex :: Categories a -> Position
 newIndex = (+1) . last . keys
 
 appendCategory_Map cs k c = insert k c cs
@@ -36,11 +39,14 @@ learnDatum lr cs (LearnCategory (k, c)) d = insert k (learn lr c d) cs
 learnDatum _  cs (NewCategory   (k, c)) _ = createCategory cs k c
 
 
-runART :: ARTable a => ART a -> a -> ART a
-runART art d = let a   = alpha art
-                   b   = beta art
-                   p   = rho art
-                   cs  = categories art
-                   cat = findCategory p a cs d
-               in art { categories = learnDatum b cs cat d
-                      , output     = cat                  }
+train :: ARTable a => ART a -> a -> ART a
+train art d = let a   = alpha art
+                  b   = beta art
+                  p   = rho art
+                  cs  = categories art
+                  cat = findCategory p a cs d
+              in art { categories = learnDatum b cs cat d
+                     , output     = cat                  }
+
+predict :: ARTable a => ART a -> a -> Output a
+predict art d = findCategory (rho art) (alpha art) (categories art) d
