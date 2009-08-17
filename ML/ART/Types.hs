@@ -16,7 +16,7 @@ module ML.ART.Types ( Choice (..)
 
                     ) where
 
-import ML.Types
+import ML.Internal.Types
 
 import Data.Traversable
 import Data.Map
@@ -25,10 +25,8 @@ newtype Choice a       = Alpha a deriving (Eq, Ord, Read, Show)
 newtype LearningRate a = Beta  a deriving (Eq, Ord, Read, Show)
 newtype Vigilance a    = Rho   a deriving (Eq, Ord, Read, Show)
 
-class INummable a where
-
 class ARTable m where
-    normalize     :: Traversable t => t m -> t m
+    normalize     :: [m] -> [m] --Traversable t => t m -> t m
     choice        :: Choice Double
                   -> m                       -- ^ category
                   -> m                       -- ^ input datum

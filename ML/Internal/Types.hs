@@ -10,3 +10,8 @@ class Metric a b where
 
 class Merge a b c where
     (<~>) :: a -> b -> c
+
+class Functor f => Defunctor f where
+    pull :: f a -> a
+
+class INummable a where

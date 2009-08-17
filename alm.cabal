@@ -18,5 +18,7 @@ Library
                      ML.ARTMap.ARTMap
                      ML.ARTMap.Types
                      ML.Internal.Types
+                     ML.Internal.Types.Vector
+                     ML.Internal.Instances
                      ML.Types
     build-depends:   base, containers
