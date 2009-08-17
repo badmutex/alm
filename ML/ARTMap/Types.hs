@@ -21,9 +21,10 @@ data ARTMap a b = ARTMap {
 
     , output :: Output b
 
-    , rho_ab :: Vigilance Double
+
     }
 
 
 data TrainingDatum a b = TD { pattern :: a
                             , target  :: b }
+                       deriving (Eq, Read, Show)

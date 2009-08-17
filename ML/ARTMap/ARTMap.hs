@@ -1,4 +1,7 @@
-module ML.ARTMap.ARTMap where
+module ML.ARTMap.ARTMap ( train
+                        , predict
+                        , module ML.ARTMap.Types
+                        ) where
 
 import qualified ML.ART.ART as ART
 import ML.ARTMap.Types
