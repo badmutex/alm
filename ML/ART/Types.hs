@@ -48,6 +48,7 @@ getCategory k cs = cs ! k
 type Position = Int
 type Positional a = (Int, a)
 data Output a = NewCategory (Positional a) | LearnCategory (Positional a)
+              deriving (Eq, Read, Show)
 fromOutput :: Output a -> Positional a
 fromOutput (NewCategory   p) = p
 fromOutput (LearnCategory p) = p
