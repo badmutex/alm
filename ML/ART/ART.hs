@@ -11,7 +11,8 @@ import Data.List (sortBy)
 
 
 newIndex :: Categories a -> Position
-newIndex = (+1) . last . keys
+newIndex cs | null $ keys cs = 0
+            | otherwise      = (+1) . last . keys $ cs
 
 appendCategory_Map cs k c = insert k c cs
 
