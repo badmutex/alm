@@ -11,5 +11,11 @@ Data-dir:       src
 Cabal-Version:	>= 1.2
 
 Library
-    exposed-modules: ML.Types ML.Internal.Types ML.ART.ART ML.ART.Types ML.ART.Instances
+    exposed-modules: 
+                     ML.ART.ART
+                     ML.ART.Instances
+                     ML.ART.Types
+                     ML.ARTMap.Types
+                     ML.Internal.Types
+                     ML.Types
     build-depends:   base, containers
