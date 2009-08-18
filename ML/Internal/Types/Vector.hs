@@ -2,6 +2,7 @@
   MultiParamTypeClasses
   , FlexibleInstances
   , NoMonomorphismRestriction
+  , TypeSynonymInstances
   #-}
 
 module ML.Internal.Types.Vector where
@@ -17,6 +18,8 @@ import ML.ART.Types ( ARTable (..)
 import Control.Applicative
 import Data.List (transpose)
 
+
+type Vector = [Double]
 
 norm  = sqrt . sum . map (^2)
 
@@ -45,3 +48,6 @@ instance ARTable [Double] where
                                    in t / b >= p
     learn (Beta b) c d = b .*> (d /\ c) <+> (1 - b) .*> c
 
+
+instance Metric Vector Vector where
+    xs <-> ys = sqrt . sum $ zipWith (\x y -> (x-y)^2) xs ys

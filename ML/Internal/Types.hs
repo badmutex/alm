@@ -15,3 +15,8 @@ class Functor f => Defunctor f where
     pull :: f a -> a
 
 class INummable a where
+
+
+data ActualVsPredicted a = AvP { label :: String
+                               , actual :: a
+                               , predicted :: a }

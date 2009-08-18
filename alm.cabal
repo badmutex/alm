@@ -20,5 +20,6 @@ Library
                      ML.Internal.Types
                      ML.Internal.Types.Vector
                      ML.Internal.Instances
+                     ML.Stats
                      ML.Types
-    build-depends:   base, containers
+    build-depends:   base, containers, hstats
