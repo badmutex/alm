@@ -5,6 +5,7 @@ module ML.ARTMap.ARTMap ( train
 
 import qualified ML.ART.ART as ART
 import ML.ARTMap.Types
+import ML.Internal.Types (TrainingDatum (..))
 
 
 train :: (ART.ARTable a, ART.ARTable b) => ARTMap a b -> TrainingDatum a b -> ARTMap a b
@@ -23,5 +24,3 @@ predict amap d = let (p,_)  = ART.fromOutput $ ART.predict (arta amap) d
                  in  (\(p',_) -> ART.getCategory p' (ART.categories $ artb amap))
                          `fmap`
                          findMapping p (mapfield amap)
-
-

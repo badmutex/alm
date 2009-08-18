@@ -18,13 +18,5 @@ data ARTMap a b = ARTMap {
       arta :: ART a
     , artb :: ART b
     , mapfield :: Mapfield Double
-
     , output :: Output b
-
-
-    }
-
-
-data TrainingDatum a b = TD { pattern :: a
-                            , target  :: b }
-                       deriving (Eq, Read, Show)
+    } deriving (Read, Show)

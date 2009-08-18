@@ -67,15 +67,15 @@ training_data = unsafePerformIO $ do g <- getStdRandom split
                                      return $ splitAt (floor ((fromIntegral $ length td') * 0.8)) td'
     where norm_p = ART.normalize $ input ("/Users" ++ path)
           norm_t = ART.normalize $ output ("/Users" ++ path)
-          td = map (\(p, t) -> AMAP.TD p t) $ zip norm_p norm_t
+          td = map (\(p, t) -> TD "" p t) $ zip norm_p norm_t
 
 runARTMap amap = foldl test [] test_data
     where td = fst training_data
           test_data = snd training_data
           amap' = foldl AMAP.train amap td
-          test rs d = let output = AMAP.predict amap' $ AMAP.pattern d
+          test rs d = let output = AMAP.predict amap' $ pattern d
                       in if isJust output 
-                            then AvP "" (AMAP.pattern d) (fromJust output) : rs
+                            then AvP "" (pattern d) (fromJust output) : rs
                             else unsafePerformIO $ do
                               putStrLn $ "Failed on " ++ show d
                               return rs

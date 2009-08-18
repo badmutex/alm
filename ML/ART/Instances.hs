@@ -7,6 +7,7 @@
 module ML.ART.Instances where
 
 import ML.ART.Types
+import ML.Internal.Types (INummable)
 
 import Control.Applicative
 

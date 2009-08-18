@@ -1,7 +1,6 @@
 module ML.ART.Types ( Choice (..)
                     , LearningRate (..)
                     , Vigilance (..)
-                    , INummable
 
                     , ARTable (..)
 
@@ -25,8 +24,10 @@ newtype Choice a       = Alpha a deriving (Eq, Ord, Read, Show)
 newtype LearningRate a = Beta  a deriving (Eq, Ord, Read, Show)
 newtype Vigilance a    = Rho   a deriving (Eq, Ord, Read, Show)
 
+-- | Any datatype that wishes to be classified using an ART module
+-- should provide an instance of 'ARTable'.
 class ARTable m where
-    normalize     :: [m] -> [m] --Traversable t => t m -> t m
+    normalize     :: [m] -> [m]
     choice        :: Choice Double
                   -> m                       -- ^ category
                   -> m                       -- ^ input datum
@@ -41,13 +42,19 @@ class ARTable m where
                   -> m                        -- ^ new category
 
 
-type Categories a = Map Int a
+type Categories a = Map Position a
 getCategory :: Position -> Categories a -> a
 getCategory k cs = cs ! k
 
 type Position = Int
-type Positional a = (Int, a)
-data Output a = NewCategory (Positional a) | LearnCategory (Positional a)
+
+-- | Maps to the position in the ARTb category and the mapping type
+type Positional a = (Position, a)
+
+-- | Denotes that a new category should be created in order to learn
+-- the datum or that it can be merged with a current category.
+data Output a = NewCategory   (Positional a)
+              | LearnCategory (Positional a)
               deriving (Eq, Read, Show)
 fromOutput :: Output a -> Positional a
 fromOutput (NewCategory   p) = p
@@ -61,4 +68,4 @@ data ART a = ART {
     , alpha      :: Choice Double
     , beta       :: LearningRate Double
     , rho        :: Vigilance Double
-    }
+    } deriving (Read, Show)

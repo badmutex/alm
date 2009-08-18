@@ -4,11 +4,9 @@
   , UndecidableInstances
   #-}
 
-
 module ML.Internal.Instances where
 
 import ML.Internal.Types
-
 import Control.Applicative
 
 instance ( Applicative f
@@ -40,18 +38,16 @@ instance ( Applicative f
          , Eq         (f n)
          , Show       (f n))
     => Floating (f n) where 
-        pi = pi
-        exp = liftA exp
-        log = liftA log
-        sin = liftA sin
-        cos = liftA cos
-        sinh = liftA sinh
-        cosh = liftA cosh
-        asin = liftA asin
-        acos = liftA acos
-        atan = liftA atan
+        pi    = pi
+        exp   = liftA exp
+        log   = liftA log
+        sin   = liftA sin
+        cos   = liftA cos
+        sinh  = liftA sinh
+        cosh  = liftA cosh
+        asin  = liftA asin
+        acos  = liftA acos
+        atan  = liftA atan
         asinh = liftA asinh
         atanh = liftA atanh
         acosh = liftA acosh
-
-
