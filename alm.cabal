@@ -7,7 +7,6 @@ License:		BSD3
 Author:			Badi' Abdul-Wahid
 Maintainer:		abdulwahidc@gmail.com
 Build-Type:		Simple
-Data-dir:       src
 Cabal-Version:	>= 1.2
 
 Library
