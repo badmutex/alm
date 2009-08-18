@@ -13,3 +13,4 @@ pearson es = let as = map actual es
 
 distance :: Metric a a => [ActualVsPredicted a] -> [Double]
 distance = map (\avp -> actual avp <-> predicted avp)
+

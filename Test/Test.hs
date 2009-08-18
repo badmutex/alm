@@ -2,6 +2,7 @@
 
 module Test.Test where
 
+import Data.Maybe
 import Control.Monad
 import Control.Applicative ((<$>))
 import System.IO.Unsafe
@@ -73,7 +74,11 @@ runARTMap amap = foldl test [] test_data
           test_data = snd training_data
           amap' = foldl AMAP.train amap td
           test rs d = let output = AMAP.predict amap' $ AMAP.pattern d
-                      in AvP "" (AMAP.target d) output : rs
+                      in if isJust output 
+                            then AvP "" (AMAP.pattern d) (fromJust output) : rs
+                            else unsafePerformIO $ do
+                              putStrLn $ "Failed on " ++ show d
+                              return rs
 
 distances = distance $ runARTMap amap
 ds = distances

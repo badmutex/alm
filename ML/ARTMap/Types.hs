@@ -11,8 +11,8 @@ type Mapfield a = Map Position (Position, a)
 createMapping :: Position -> Position -> Mapfield a -> a -> Mapfield a
 createMapping p1 p2 f d = insert p1 (p2,d) f
 
-findMapping :: Position -> Mapfield a -> (Position, a)
-findMapping p f = f ! p
+findMapping :: Position -> Mapfield a -> Maybe (Position, a)
+findMapping = lookup
 
 data ARTMap a b = ARTMap {
       arta :: ART a

@@ -18,7 +18,10 @@ train amap d = let arta'   = ART.train (arta amap) (pattern d)
                        , output   = ART.output artb'
                        }
 
-predict :: ART.ARTable a => ARTMap a b -> a -> b
+predict :: ART.ARTable a => ARTMap a b -> a -> Maybe b
 predict amap d = let (p,_)  = ART.fromOutput $ ART.predict (arta amap) d
-                     (p',_) = findMapping p (mapfield amap)
-                 in ART.getCategory p' (ART.categories $ artb amap)
+                 in  (\(p',_) -> ART.getCategory p' (ART.categories $ artb amap))
+                         `fmap`
+                         findMapping p (mapfield amap)
+
+
